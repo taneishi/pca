@@ -1,5 +1,5 @@
 /*
-  http://bl.ocks.org/ktaneishi/9499896#pca.js
+  principal component analysis
 */
 var PCA = function(){
     this.scale = scale;
