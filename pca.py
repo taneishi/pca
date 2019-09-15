@@ -96,10 +96,10 @@ if __name__ == '__main__':
     score = pd.concat([df, score], axis=1)
     plot(score)
 
-    #assert np.allclose(score, pca_svd.pc())
+    assert np.allclose(score[['PC1', 'PC2']], pca_svd.pc())
 
     plt.tight_layout()
-    plt.show()
+    plt.savefig('figure/pca.png')
 
     # assert two princople components based on SVD and EigenDecomposition
     print('PCA(svd) == PCA(eig) is %s' % np.allclose(pca_svd.pc(), pca_eig.pc()))
