@@ -192,7 +192,7 @@ var PCA = function(){
                 x=y
         }
         
-        // accumulation of right hand gtransformations
+        // accumulation of right hand transformations
         for (i=n-1; i != -1; i+= -1)
         {
             if (g != 0.0)
