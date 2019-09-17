@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<title>Principal Component Analysis</title>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0">
+<style>
+body {
+    color: #808080;
+    font-family:Monospace;
+    font-size:13px;
+    text-align:center;
+
+    background-color: #000;
+    margin: 0px;
+    overflow: hidden;
+}
+
+#info {
+    position: absolute;
+    top: 0px; width: 100%;
+    padding: 5px;
+    color: #e0e0e0;
+}
+
+a { color: #0080ff; }
+</style>
+</head>
+<body>
+
+<div id="container"></div>
+<div id="info">Principal Component Analysis</div>
+
+<script src="three.min.js"></script>
+<script src="d3.v3.min.js"></script>
+<script src="js/Detector.js"></script>
+<script src="js/libs/stats.min.js"></script>
+<script src="js/libs/dat.gui.min.js"></script>
+<script src="pca.js"></script>
+<script>
+var mypca = new PCA();
+</script>
+</body>
+</html>
