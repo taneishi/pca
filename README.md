@@ -1,7 +1,7 @@
 Canonical Correlation Analysis
 ==============================
 
-Reference: http://www.nr.com/whp/notes/CanonCorrBySVD.pdf 
+Reference: http://numerical.recipes/whp/notes/CanonCorrBySVD.pdf
 
 ```R:R code block (from cancor() help)
 ## signs of results are random
