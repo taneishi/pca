@@ -3,7 +3,7 @@ Canonical Correlation Analysis
 
 Reference: http://www.nr.com/whp/notes/CanonCorrBySVD.pdf 
 
-``` R code block (from cancor() help)
+```R:R code block (from cancor() help)
 ## signs of results are random
 pop <- LifeCycleSavings[, 2:3]
 oec <- LifeCycleSavings[, -(2:3)]
@@ -18,7 +18,7 @@ all(abs(cor(x %*% cxy$xcoef) - diag(3)) < 1e-15)
 all(abs(cor(y %*% cxy$ycoef) - diag(5)) < 1e-15)
 ```
 
-``` Results of R cancor()
+```Results of R cancor()
 $cor
 [1] 0.47379784 0.19096804 0.07742772
 
@@ -51,7 +51,7 @@ $ycenter
 [1] TRUE
 ```
 
-``` Results of cancor.py
+```Results of cancor.py
 cor [0.8248 0.3653]
 xcoef [[-0.0091 -0.0362]
  [ 0.0486 -0.2603]]
