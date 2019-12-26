@@ -1,3 +1,4 @@
+# %%
 import pandas as pd
 import numpy as np
 import matplotlib.pyplot as plt
@@ -5,6 +6,7 @@ import sklearn.decomposition
 import sklearn.datasets
 import os
 
+# %%
 def scale(df, center=True, scale=True):
     ''' compatible with R scale() '''
     if center:
@@ -13,6 +15,7 @@ def scale(df, center=True, scale=True):
         df = df / df.std()
     return df
 
+# %%
 class PCA:
     def __init__(self, df, npc=2, method='svd'):
         self.df = df
@@ -52,6 +55,7 @@ class PCA:
         self.score[:,1] = -self.score[:,1]
         return self.score
 
+# %%
 def plot(df):
     for name in df['target'].unique():
         cond = df['target'] == name
@@ -59,7 +63,8 @@ def plot(df):
     plt.grid(True)
     plt.legend(framealpha=0.5)
 
-if __name__ == '__main__':
+# %%
+def main():
     np.set_printoptions(precision=4, threshold=30)
 
     # famous Fisher iris data
@@ -103,3 +108,10 @@ if __name__ == '__main__':
 
     # assert two princople components based on SVD and EigenDecomposition
     print('PCA(svd) == PCA(eig) is %s' % np.allclose(pca_svd.pc(), pca_eig.pc()))
+
+
+# %%
+if __name__ == '__main__':
+    main()
+
+# %%
