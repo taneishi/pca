@@ -1,14 +1,18 @@
+# %%
 '''
-Reference: Peltason L et al. Rationalizing three-dimensional activity landscapes 
-and the influence of molecular representations on landscape topology and formation of activity cliffs. 
-J Chem Inf Model, J Chem Inf Model 50, 1021-1033, 2010.
+Reference: Peltason L et al.,
+Rationalizing three-dimensional activity landscapes and the influence of molecular representations on landscape topology and formation of activity cliffs.,
+J Chem Inf Model 50, 1021-1033, 2010.
 '''
+
+# %%
 import numpy as np
 import pandas as pd
 import matplotlib.pyplot as plt
 import scipy.interpolate
 import pybel
 
+# %%
 def scale(X, center=True, scale=True):
     ''' compatible with GNU R scale() '''
     if center:
@@ -21,6 +25,7 @@ def scale(X, center=True, scale=True):
         X /= std
     return X
 
+# %%
 def pca(X, npc=2):
     # calculate eigenvalues(l) and eigenvectors(w) of the covariance matrix
     C = np.cov(X.T)
@@ -32,6 +37,7 @@ def pca(X, npc=2):
     pc = np.dot(X, w[:,:npc])
     return pc
 
+# %%
 def fp_mds(fptype):
     fps = []
     solubility = []
@@ -61,14 +67,18 @@ def fp_mds(fptype):
     plt.imshow(zi, vmin=zi.min(), vmax=zi.max(), origin='lower', cmap='RdYlGn_r', aspect='auto',
             extent=[pcs[:,0].min(), pcs[:,0].max(), pcs[:,1].min(), pcs[:,1].max()])
     plt.scatter(pcs[:,0], pcs[:,1], c=solubility, cmap='RdYlGn_r')
-    
+
+# %%
 def main():
     plt.figure(figsize=(9,6))
     for fptype in pybel.fps[-6:]:
         print(fptype)
         fp_mds(fptype)
     plt.tight_layout()
-    plt.savefig('figure/fp.png')
+    plt.show()
 
+# %%
 if __name__ == '__main__':
     main()
+
+# %%
