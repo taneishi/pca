@@ -104,7 +104,7 @@ def main():
     assert np.allclose(score[['PC1', 'PC2']], pca_svd.pc())
 
     plt.tight_layout()
-    plt.savefig('figure/pca.png')
+    plt.show()
 
     # assert two princople components based on SVD and EigenDecomposition
     print('PCA(svd) == PCA(eig) is %s' % np.allclose(pca_svd.pc(), pca_eig.pc()))

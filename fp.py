@@ -4,8 +4,6 @@ Reference: Peltason L et al.,
 Rationalizing three-dimensional activity landscapes and the influence of molecular representations on landscape topology and formation of activity cliffs.,
 J Chem Inf Model 50, 1021-1033, 2010.
 '''
-
-# %%
 import numpy as np
 import pandas as pd
 import matplotlib.pyplot as plt
@@ -72,7 +70,6 @@ def fp_mds(fptype):
 def main():
     plt.figure(figsize=(9,6))
     for fptype in pybel.fps[-6:]:
-        print(fptype)
         fp_mds(fptype)
     plt.tight_layout()
     plt.show()
