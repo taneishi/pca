@@ -4,7 +4,6 @@ import numpy as np
 import matplotlib.pyplot as plt
 import sklearn.decomposition
 import sklearn.datasets
-import os
 
 # %%
 def scale(df, center=True, scale=True):
