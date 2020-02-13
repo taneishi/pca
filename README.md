@@ -1,15 +1,16 @@
-Principal Component Analysis
-============================
+Dimensionality Reduction exmaples
+=================================
 
-pca.py
-------
+Principal Component Analysis
+----------------------------
+
+* pca.py
 
 3 ways to calculate principal component analysis.
 
 ![pca](https://raw.githubusercontent.com/taneishi/pca/master/pca.png)
 
-fp.py
------
+* fp.py
 
 Plot pc1 and pc2 and molecular solubility.
 
@@ -18,7 +19,11 @@ Plot pc1 and pc2 and molecular solubility.
 
 ![fp](https://raw.githubusercontent.com/taneishi/pca/master/fp.png)
 
-pca.js
-------
+* pca.js
 
 Javascript implementation.
+
+Canonical Correlation Analysis
+------------------------------
+
+
