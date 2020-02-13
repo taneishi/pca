@@ -1,5 +1,5 @@
-Dimensionality Reduction exmaples
-=================================
+Dimensionality Reduction
+========================
 
 Principal Component Analysis
 ----------------------------
