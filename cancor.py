@@ -1,11 +1,8 @@
-# %%
 import pandas as pd
 import numpy as np
 import matplotlib.pyplot as plt
-import statsmodels.api as sm
 import sys
 
-# %%
 def cancor(x, y, xcenter=True, ycenter=True):
     if x.shape[0] != y.shape[0]:
         sys.exit('unequal number of rows in cancor')
@@ -54,9 +51,8 @@ def cancor(x, y, xcenter=True, ycenter=True):
             'ycenter': ycenter,
             }
 
-# %%
 def main():
-    df = sm.datasets.get_rdataset('LifeCycleSavings').data
+    df = pd.read_csv('LifeCycleSavings.csv')
     pop = df[['pop15','pop75']]
     oec = df[['sr','dpi','ddpi']]
 
@@ -74,10 +70,7 @@ def main():
     plt.ylabel('$v_0$')
     plt.grid(True)
     plt.tight_layout()
-    plt.show()
+    plt.savefig('result.png')
 
-# %%
 if __name__ == '__main__':
     main()
-
-# %%

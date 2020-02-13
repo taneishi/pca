@@ -48,3 +48,5 @@ ycenter sr         9.6710
 dpi     1106.7584
 ddpi       3.7576
 ```
+
+![result](https://raw.githubusercontent.com/taneishi/cancor/master/result.png)
