@@ -394,3 +394,11 @@ var PCA = function(){
         return pcUdS;
     }
 };
+
+var pca = PCA()
+
+d3.csv('iris.csv', function(error, data){
+    console.log(data);
+});
+
+

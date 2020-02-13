@@ -1,4 +1,3 @@
-# %%
 '''
 Reference: Peltason L et al.,
 Rationalizing three-dimensional activity landscapes and the influence of molecular representations on landscape topology and formation of activity cliffs.,
@@ -10,7 +9,6 @@ import matplotlib.pyplot as plt
 import scipy.interpolate
 import pybel
 
-# %%
 def scale(X, center=True, scale=True):
     ''' compatible with GNU R scale() '''
     if center:
@@ -23,7 +21,6 @@ def scale(X, center=True, scale=True):
         X /= std
     return X
 
-# %%
 def pca(X, npc=2):
     # calculate eigenvalues(l) and eigenvectors(w) of the covariance matrix
     C = np.cov(X.T)
@@ -35,7 +32,6 @@ def pca(X, npc=2):
     pc = np.dot(X, w[:,:npc])
     return pc
 
-# %%
 def fp_mds(fptype):
     fps = []
     solubility = []
@@ -66,16 +62,12 @@ def fp_mds(fptype):
             extent=[pcs[:,0].min(), pcs[:,0].max(), pcs[:,1].min(), pcs[:,1].max()])
     plt.scatter(pcs[:,0], pcs[:,1], c=solubility, cmap='RdYlGn_r')
 
-# %%
 def main():
     plt.figure(figsize=(9,6))
     for fptype in pybel.fps[-6:]:
         fp_mds(fptype)
     plt.tight_layout()
-    plt.show()
+    plt.savefig('fp.png')
 
-# %%
 if __name__ == '__main__':
     main()
-
-# %%
