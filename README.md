@@ -1,30 +1,27 @@
-Dimensionality Reduction
-========================
+# Dimensionality Reduction
 
-Principal Component Analysis
-----------------------------
+## Principal Component Analysis
 
-* pca.py
+### pca.py
 
 3 ways to calculate principal component analysis.
 
-![pca](https://raw.githubusercontent.com/taneishi/reduction/master/pca/pca.png)
+<img src="https://raw.githubusercontent.com/taneishi/reduction/master/pca/pca.png" width="500" alt="pca" />
 
-* fp.py
+### fp.py
 
 Plot pc1 and pc2 and molecular solubility.
 
 - conda install -c openbabel openbabel
 - solubility.test.sdf from RDKit repository
 
-![fp](https://raw.githubusercontent.com/taneishi/reduction/master/pca/fp.png)
+<img src="https://raw.githubusercontent.com/taneishi/reduction/master/pca/fp.png" width="500" alt="fp" />
 
-* pca.js
+### pca.js
 
 Javascript implementation.
 
-Canonical Correlation Analysis
-------------------------------
+## Canonical Correlation Analysis
 
 Reference: http://numerical.recipes/whp/notes/CanonCorrBySVD.pdf
 
@@ -77,4 +74,4 @@ dpi     1106.7584
 ddpi       3.7576
 ```
 
-![result](https://raw.githubusercontent.com/taneishi/reduction/master/cancor/result.png)
+<img src="https://raw.githubusercontent.com/taneishi/reduction/master/cancor/result.png" width="300" alt="cca" />
