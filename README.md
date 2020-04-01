@@ -17,4 +17,4 @@ Plot pc1 and pc2 and molecular solubility.
 
 ## pca.js
 
-Javascript implementation.
+Javascript implementation. [Demo](https://taneishi.github.io/pca)
