@@ -35,7 +35,7 @@ def pca(X, npc=2):
 def fp_mds(fptype):
     fps = []
     solubility = []
-    for mol in pybel.readfile(filename='solubility.test.sdf', format='sdf'):
+    for mol in pybel.readfile(filename='data/solubility.test.sdf', format='sdf'):
         fp = mol.calcfp(fptype=fptype).bits
         fps.append(fp)
         solubility.append(np.float32(mol.data['SOL']))
