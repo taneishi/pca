@@ -31,7 +31,6 @@ document.addEventListener('DOMContentLoaded', function () {
 
         categories = data.map(function(row){ return row['Species']; });
         pc = pc.map(function(row, i){ return row.concat(categories[i]); });
-        console.log(pc);
 
         categories = d3.set(categories).values();
 
