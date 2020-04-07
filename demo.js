@@ -20,9 +20,7 @@ document.addEventListener('DOMContentLoaded', function () {
         },
     });
 
-    d3.csv('iris.csv', function(row){
-        return row;
-    }).then(function(data){
+    d3.csv('iris.csv').then(function(data){
         columns = ['Sepal.Length', 'Sepal.Width', 'Petal.Length', 'Petal.Width'];
         
         X = data.map(function(row){
