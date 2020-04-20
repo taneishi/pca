@@ -1,22 +1,16 @@
 document.addEventListener('DOMContentLoaded', function () {
     var myChart = Highcharts.chart('container', {
         chart: {
-            type: 'scatter',
-            width: 600,
-            height: 600
+            type: 'scatter', width: 600, height: 600
         },
         title: {
             text: 'Principal Component Anaylsis'
         },
         xAxis: {
-            title: {
-                text: 'PC1'
-            }
+            title: { text: 'PC1' }
         },
         yAxis: {
-            title: {
-                text: 'PC2'
-            }
+            title: { text: 'PC2' }
         },
     });
 
@@ -42,4 +36,3 @@ document.addEventListener('DOMContentLoaded', function () {
         });
     })
 });
-
