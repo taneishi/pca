@@ -7,19 +7,8 @@ import numpy as np
 import pandas as pd
 import matplotlib.pyplot as plt
 import scipy.interpolate
+from sklearn import preprocessing
 from openbabel import pybel
-
-def scale(X, center=True, scale=True):
-    ''' compatible with GNU R scale() '''
-    if center:
-        X -= X.mean(axis=0)
-
-    if scale:
-        std = X.std(axis=0)
-        # assign 1. if std is False
-        std = np.where(std, std, 1.)
-        X /= std
-    return X
 
 def pca(X, npc=2):
     # calculate eigenvalues(l) and eigenvectors(w) of the covariance matrix
@@ -32,10 +21,10 @@ def pca(X, npc=2):
     pc = np.dot(X, w[:,:npc])
     return pc
 
-def fp_mds(fptype):
+def fp_mds(filename, fptype):
     fps = []
     solubility = []
-    for mol in pybel.readfile(filename='data/solubility.test.sdf', format='sdf'):
+    for mol in pybel.readfile(filename=filename, format='sdf'):
         fp = mol.calcfp(fptype=fptype).bits
         fps.append(fp)
         solubility.append(np.float32(mol.data['SOL']))
@@ -45,7 +34,7 @@ def fp_mds(fptype):
     for i,fp in enumerate(fps):
         mat[i,fp] = 1.
 
-    mat = scale(mat)
+    mat = preprocessing.normalize(mat)
     pcs = np.real(pca(mat, npc=2))
 
     # Set up a regular grid of interpolation points
@@ -63,9 +52,10 @@ def fp_mds(fptype):
     plt.scatter(pcs[:,0], pcs[:,1], c=solubility, cmap='RdYlGn_r')
 
 def main():
+    filename = 'data/solubility.test.sdf'
     plt.figure(figsize=(9,6))
     for fptype in pybel.fps[-6:]:
-        fp_mds(fptype)
+        fp_mds(filename, fptype)
     plt.tight_layout()
     plt.savefig('fp.png')
 
