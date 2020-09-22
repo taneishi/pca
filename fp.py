@@ -57,7 +57,7 @@ def main():
     for fptype in pybel.fps[-6:]:
         fp_mds(filename, fptype)
     plt.tight_layout()
-    plt.savefig('fp.png')
+    plt.savefig('doc/fp.png')
 
 if __name__ == '__main__':
     main()
