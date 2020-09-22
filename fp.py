@@ -7,7 +7,7 @@ import numpy as np
 import pandas as pd
 import matplotlib.pyplot as plt
 import scipy.interpolate
-import pybel
+from openbabel import pybel
 
 def scale(X, center=True, scale=True):
     ''' compatible with GNU R scale() '''
