@@ -8,7 +8,9 @@ import pandas as pd
 import matplotlib.pyplot as plt
 import scipy.interpolate
 from sklearn import preprocessing
-from openbabel import pybel
+from rdkit import Chem
+from rdkit.Chem import AllChem
+import argparse
 
 def pca(X, npc=2):
     # calculate eigenvalues(l) and eigenvectors(w) of the covariance matrix
@@ -21,18 +23,23 @@ def pca(X, npc=2):
     pc = np.dot(X, w[:,:npc])
     return pc
 
-def fp_mds(filename, fptype):
+def fp_mds(args, radius):
     fps = []
+    bit_info = {}
     solubility = []
-    for mol in pybel.readfile(filename=filename, format='sdf'):
-        fp = mol.calcfp(fptype=fptype).bits
+    for mol in Chem.SDMolSupplier(args.filename):
+        fp_bit = list(AllChem.GetMorganFingerprintAsBitVect(mol, radius, bitInfo=bit_info, nBits=args.nbits))
+
+        # you can use fp_bit for fixed length fingerprints,
+        # while this code generates matrix from variable length fingerprints for generality.
+        fp = list(bit_info.keys())
         fps.append(fp)
-        solubility.append(np.float32(mol.data['SOL']))
+        solubility.append(np.float32(mol.GetProp('SOL')))
 
     ncol = max(max(fp) if len(fp) > 0 else 0 for fp in fps)
     mat = np.zeros((len(fps), ncol+1), dtype=np.float32)
-    for i,fp in enumerate(fps):
-        mat[i,fp] = 1.
+    for i, fp in enumerate(fps):
+        mat[i, fp] = 1.
 
     mat = preprocessing.normalize(mat)
     pcs = np.real(pca(mat, npc=2))
@@ -45,17 +52,23 @@ def fp_mds(filename, fptype):
     rbf = scipy.interpolate.Rbf(pcs[:,0], pcs[:,1], solubility, function='linear', smooth=0.1)
     zi = rbf(xi, yi)
 
-    plt.subplot(2, 3, pybel.fps[-6:].index(fptype)+1)
-    plt.title('%s' % fptype)
+    plt.title('ecfp%d %dbits' % (radius, args.nbits))
     plt.imshow(zi, vmin=zi.min(), vmax=zi.max(), origin='lower', cmap='RdYlGn_r', aspect='auto',
             extent=[pcs[:,0].min(), pcs[:,0].max(), pcs[:,1].min(), pcs[:,1].max()])
     plt.scatter(pcs[:,0], pcs[:,1], c=solubility, cmap='RdYlGn_r')
 
 def main():
-    filename = 'data/solubility.test.sdf'
+    parser = argparse.ArgumentParser() 
+    parser.add_argument('--filename', default='data/solubility.test.sdf')
+    parser.add_argument('--nbits', default=4096, type=int)
+    args = parser.parse_args()
+
+    print(vars(args))
+
     plt.figure(figsize=(9,6))
-    for fptype in pybel.fps[-6:]:
-        fp_mds(filename, fptype)
+    for index, radius in enumerate([0, 2, 4, 6, 8, 10], 1):
+        plt.subplot(2, 3, index)
+        fp_mds(args, radius)
     plt.tight_layout()
     plt.savefig('doc/fp.png')
 
