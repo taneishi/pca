@@ -1,5 +1,5 @@
 document.addEventListener('DOMContentLoaded', function () {
-    d3.csv('https://raw.githubusercontent.com/taneishi/pca/master/iris.csv').then(function(data){
+    d3.csv('https://raw.githubusercontent.com/taneishi/pca/master/data/iris.csv').then(function(data){
         columns = ['Sepal.Length', 'Sepal.Width', 'Petal.Length', 'Petal.Width'];
 
         X = data.map(function(row){
