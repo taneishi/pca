@@ -1,38 +1,59 @@
 document.addEventListener('DOMContentLoaded', function () {
-    var myChart = Highcharts.chart('container', {
-        chart: {
-            type: 'scatter', width: 600, height: 600
-        },
-        title: {
-            text: 'Principal Component Anaylsis'
-        },
-        xAxis: {
-            title: { text: 'PC1' }
-        },
-        yAxis: {
-            title: { text: 'PC2' }
-        },
-    });
-
-    d3.csv('iris.csv').then(function(data){
+    d3.csv('https://raw.githubusercontent.com/taneishi/pca/master/iris.csv').then(function(data){
         columns = ['Sepal.Length', 'Sepal.Width', 'Petal.Length', 'Petal.Width'];
-        
+
         X = data.map(function(row){
             return columns.map(function(col){ return Number(row[col]); })
         });
         
         pc = new PCA().pca(X, 2);
 
-        categories = data.map(function(row){ return row['Species']; });
-        pc = pc.map(function(row, i){ return row.concat(categories[i]); });
+        labels = data.map(function(row){ return row['Species']; });
+        pc = pc.map(function(row, i){ return row.concat(labels[i]); });
 
-        categories = d3.set(categories).values();
+        labels = Array.from(new Set(labels));
 
-        categories.map(function(category){
-            myChart.addSeries({
-                name: category, 
-                data: pc.filter(function(row){ return row[4] == category; })
-            });
+        colors = ['#aea', '#aae', '#eaa']
+
+        datasets = labels.map(function(label){
+            return {
+                label: label, 
+                data: pc.filter(function(row){ return row[4] == label; }),
+			    borderColor: '#222',
+                backgroundColor: colors[labels.indexOf(label)],
+                pointRadius: 5,
+                };
         });
+
+		data = {
+		  labels: labels,
+		  datasets: datasets,
+		};
+
+        var mychart = new Chart('container', {
+            type: 'scatter',
+            data: data,
+            options: {
+                responsive: false,
+                scales: {
+                    x: {
+                        title: { display: true, text: 'PC1', },
+                    },
+                    y: {
+                        title: { display: true, text: 'PC2', },
+                    },
+                },
+                plugins: {
+                    legend: {
+                        position: 'top',
+                    },
+                    title: {
+                        display: true,
+                        text: 'Principal Component Anaylsis'
+                    },
+                }
+            },
+        });
+        
     })
 });
