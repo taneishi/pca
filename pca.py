@@ -2,7 +2,6 @@ import pandas as pd
 import numpy as np
 import matplotlib.pyplot as plt
 import sklearn.decomposition
-import sklearn.datasets
 
 def scale(df, center=True, scale=True):
     ''' compatible with R scale() '''
@@ -52,8 +51,8 @@ class PCA:
         return self.score
 
 def plot(df):
-    for name in df['target'].unique():
-        cond = df['target'] == name
+    for name in df['Species'].unique():
+        cond = df['Species'] == name
         plt.plot(df.loc[cond,'PC1'], df.loc[cond,'PC2'], 'o', label=name)
     plt.grid(True)
     plt.legend(framealpha=0.5)
@@ -62,10 +61,8 @@ def main():
     np.set_printoptions(precision=4, threshold=30)
 
     # famous Fisher iris data
-    dataset = sklearn.datasets.load_iris()
-    df = pd.DataFrame(dataset['data'])
-    df.columns = dataset['feature_names']
-    df['target'] = dataset['target']
+    df = pd.read_csv('data/iris.csv')
+    print(df)
 
     # use only numerical columns
     values = scale(df.iloc[:,:4], center=True, scale=True)
