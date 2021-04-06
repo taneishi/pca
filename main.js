@@ -1,11 +1,11 @@
 $(function(){
-    var pstyle = 'border: 1.5px solid #dfdfdf; padding: 10px;';
+    var style = 'border: 1.5px solid #dfdfdf; padding: 10px;';
 
     $('#container').w2layout({
         name: 'container',
         panels: [
-            { type: 'left', size: 720, resizable: true, style: pstyle, content: 'grid' },
-            { type: 'main', style: pstyle, content: '<canvas id="pca" width="600px" height="600px"></canvas>' },
+            { type: 'left', size: 720, style: style, resizable: true },
+            { type: 'main', style: style, content: '<canvas id="pca" width="600px" height="600px"></canvas>' },
         ]
     });
 
