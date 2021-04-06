@@ -18,3 +18,10 @@ Plot pc1 and pc2 and molecular solubility.
 ## pca.js
 
 Javascript implementation. [Demo](https://taneishi.github.io/pca)
+
+## Environments and Licenses
+
+- Chart.js: MIT 
+- w2ui: MIT
+- jQuery: MIT
+- D3.js - Data-Driven Documents: BSD-3-Clause
