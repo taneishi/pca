@@ -4,51 +4,42 @@ $(function(){
     $('#container').w2layout({
         name: 'container',
         panels: [
-            { type: 'left', size: 720, style: style, resizable: true },
+            { type: 'left', size: 700, style: style, resizable: true },
             { type: 'main', style: style, content: '<canvas id="pca" width="600px" height="600px"></canvas>' },
         ]
     });
 
-
     d3.csv('https://raw.githubusercontent.com/taneishi/pca/master/data/iris.csv').then(function(data){
-        columns = data.columns;
-
         // rename column names
-        data = data.map(function(row){
-            columns.slice(0, 4).map(function(col){
-                row = Object.assign(row, {[col.replace('.', ' ')]: Number(row[col])});
-                delete row[col];
-            });
-            return row;
-        });
-
-        columns = columns.map(col => col.replace('.', ' '));
-
-        X = data.map(row => 
-            columns.slice(0, 4).map(col => row[col])
-        );
+        X = data.map(row => data.columns.slice(0, 4).map(col => parseFloat(row[col])));
+        y = data.map(row => row['Species']);
 
         pc = new PCA().pca(X, 2);
 
-        labels = data.map(row => row['Species']);
-        pc = pc.map((row, i) => row.concat(labels[i]));
-
-        labels = Array.from(new Set(labels));
-
+        labels = Array.from(new Set(y));
         colors = ['#aea', '#aae', '#eaa']
 
-        datasets = labels.map(function(label){
+        datasets = labels.map(function(label, i){
             return {
                 label: label, 
-                data: pc.filter(row => (row[4] == label)),
+                data: pc.filter((row, j) => (y[j] == label)),
 			    borderColor: '#222',
-                backgroundColor: colors[labels.indexOf(label)],
+                backgroundColor: colors[i],
                 pointRadius: 5,
                 };
         });
 
+        columns = data.columns.map(col => col.replace('.', ' '));
+        columns = columns.concat(['PC1', 'PC2']);
+
+        data = X.map(function(row, i){
+            row = row.concat(y[i]).concat(pc[i]);
+            row = row.map((val, j) => [columns[j], val]);
+            row = [['recid',i]].concat(row)
+            return Object.fromEntries(row);
+        });
+
         columns = columns.map(col => ({ field: col, text: col, size: '25%', sortable: true, resizable: true }));
-        data = data.map((row, i) => Object.assign({recid: i}, row));
 
         $('#layout_container_panel_left').w2grid({
             name: 'grid',
@@ -90,7 +81,6 @@ $(function(){
                 }
             },
         });
-        
+
     })
 });
-

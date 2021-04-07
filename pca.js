@@ -1,6 +1,5 @@
-/*
-  principal component analysis - MIT License
-*/
+// principal component analysis - MIT License
+
 var PCA = function(){
     this.scale = scale;
     this.pca = pca;
