@@ -34,7 +34,7 @@ $(function(){
         columns = columns.concat(['PC1', 'PC2']);
 
         data = X.map(function(row, i){
-            row = row.concat(y[i]).concat(pc[i]);
+            row = row.concat(y[i]).concat([pc[i][0], pc[i][1]]);
             row = row.map((val, j) => [columns[j], val]);
             row = [['recid',i]].concat(row)
             return Object.fromEntries(row);
