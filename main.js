@@ -14,7 +14,6 @@ $(function(){
         X = data.map(row => data.columns.slice(0, 4).map(col => parseFloat(row[col])));
         y = data.map(row => row['Species']);
 
-        //pc = new PCA().pca(X, 2); // R-compatible
         pc = new ML.PCA(X, { center: true, scale: true })
             .predict(X).data;
 
