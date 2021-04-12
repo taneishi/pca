@@ -24,4 +24,4 @@ Javascript implementation. [Demo](https://taneishi.github.io/pca)
 - Chart.js: MIT 
 - w2ui: MIT
 - jQuery: MIT
-- D3.js - Data-Driven Documents: BSD-3-Clause
+- D3.js: BSD-3-Clause
