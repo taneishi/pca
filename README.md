@@ -21,7 +21,7 @@ Javascript implementation. [Demo](https://taneishi.github.io/pca)
 
 ## Environments and Licenses
 
-- Chart.js: MIT 
-- w2ui: MIT
-- jQuery: MIT
-- D3.js: BSD 3-Clause
+- Chart.js-3.0.2: MIT 
+- w2ui-1.5: MIT
+- jQuery-3.6.0: MIT
+- D3.js-v6: BSD 3-Clause
