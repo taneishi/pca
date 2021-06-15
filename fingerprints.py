@@ -60,7 +60,7 @@ def main():
     parser = argparse.ArgumentParser() 
     parser.add_argument('--filename', default='data/solubility.test.sdf')
     parser.add_argument('--nbits', default=4096, type=int)
-    args = parser.parse_args([])
+    args = parser.parse_args()
 
     print(vars(args))
 
